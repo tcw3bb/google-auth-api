@@ -48,6 +48,14 @@ end
 
 def create_token(input2)
  system("/usr/local/bin/google-authenticator  -q -f -t -d -r 3 -R30 -w 2 -s  /var/google-auth/#{input2}_google_auth")
+ 
+  if $?.exitstatus == 0
+        puts "Success creating Token"
+		else
+        puts "Error Creating Token"
+		status 400
+ end
+ 
  system("chown root:root /var/google-auth/#{input2}_google_auth")
  system("chmod 400 /var/google-auth/#{input2}_google_auth")
 end
