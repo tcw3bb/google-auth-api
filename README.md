@@ -9,7 +9,7 @@ Install sinatra
 
 >gem install rdoc 
 
->gem install sinatra
+>gem install sinatra --no-rdoc --no-ri
 
 
 
