@@ -30,7 +30,7 @@ def validate_token(user)
         puts "Token for user already exists"
         else
 		create_token(user)
-		puts "Creating token"
+		puts "Creating token" 
   end
 end
 
