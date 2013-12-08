@@ -6,11 +6,23 @@ require 'sinatra'
 require 'openssl' 
 CERT_PATh= './ssl'
 APIKEY='321321'
-
+set :bind,  '0.0.0.0'
 
 before do
   error 401 unless params[:key]==APIKEY
 end
+
+def validate_input(user)
+if user =~ /\A[\sa-z0-9]+\Z/i
+then
+  validate_user(@userid)
+  validate_token(@userid)
+else
+	status  404
+	break
+end
+end
+
 
 def validate_user(user)
 #check if user is already created local account
@@ -74,8 +86,7 @@ post '/api/:id' do
  if @userid.nil? then
   status 404
  else
-  validate_user(@userid)
-  validate_token(@userid)
-   end
+  validate_input(@userid)
+  end
 end
 
